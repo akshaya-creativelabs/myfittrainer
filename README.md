@@ -1,20 +1,16 @@
-# MyFitTrainer V1.1
+# MyFitTrainer V1.2
 
-Improvements:
-- Date/day in header and current/weekly/final weight targets
-- Full workout preview before starting
-- Guided one-exercise-at-a-time session
-- Set 1 unlocked first; subsequent sets unlock when saved
-- Previous performance and progression suggestion
-- Rest timer after each set, with skip button
-- Exercise substitution option for unavailable equipment
-- Form cues for each exercise
-- Day summary with completed/pending exercises
-- Session complete/cool-down flow and restart option
-- Timestamped body measurements with edit
-- Exercise history and session history
-- Resume an unfinished session after reopening
+A mobile-friendly installable web app for tracking gym sessions, sets, measurements and progress.
 
-Deploy: upload `index.html`, `manifest.json`, and `sw.js` to the root of the existing GitHub repository, replacing old versions. Keep the same URL.
+## Deploy/update with GitHub Pages
+1. Extract this ZIP.
+2. Upload `index.html`, `manifest.json`, and `sw.js` to the root of your existing `myfittrainer` repository, replacing the old files.
+3. Commit the changes and wait for the GitHub Pages deployment to finish.
+4. Open `https://akshaya-creativelabs.github.io/myfittrainer/?v=12` and refresh once.
 
-Data: retains the `myfittrainer_v1` localStorage key for basic V1 data in the same browser. Local browser data is not a cloud backup; don't clear website data. Exercise GIF/video demos are deferred to a later iteration; V1.1 includes form cues instead.
+## Notes
+- Workout data is stored locally in the browser on the device; it is not synced to a server.
+- The weekly target starts at 97.6 kg for a 98 kg starting weight, then aims for roughly 0.4 kg per week toward 90 kg. It will not be shown above the latest recorded weight.
+
+
+Version 1.3 update: strengthened the Day summary button handler, prevented default button behavior, and added a recovery message if no active session is available. Service worker cache version bumped so the new files refresh.
