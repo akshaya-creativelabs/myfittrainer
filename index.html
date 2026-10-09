@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#111827">
+<link rel="manifest" href="manifest.json">
+<title>MyFitTrainer</title>
+<style>
+:root{--bg:#f4f6f8;--card:#fff;--ink:#111827;--muted:#6b7280;--accent:#2563eb;--ok:#16a34a;--line:#e5e7eb;--danger:#dc2626}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;padding-bottom:76px}
+header{background:#111827;color:#fff;padding:22px 18px 18px;position:sticky;top:0;z-index:5}
+header h1{font-size:24px;margin:0 0 4px} header p{margin:0;color:#cbd5e1;font-size:13px}
+main{max-width:720px;margin:auto;padding:16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px;margin-bottom:14px;box-shadow:0 2px 8px #00000008}
+h2{font-size:18px;margin:0 0 12px}h3{font-size:16px;margin:0 0 8px}
+.statgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.stat{background:#f8fafc;border-radius:12px;padding:12px}.stat b{font-size:21px;display:block}.stat span{font-size:12px;color:var(--muted)}
+button{border:0;border-radius:12px;padding:12px 14px;font-weight:700;font-size:14px;background:var(--accent);color:white;cursor:pointer}
+button.secondary{background:#e5e7eb;color:#111827}button.ok{background:var(--ok)}button.danger{background:var(--danger)}
+button.full{width:100%;margin-top:8px}.row{display:flex;gap:8px;align-items:center}.row>*{flex:1}
+.exercise{border:1px solid var(--line);border-radius:14px;padding:14px;margin-bottom:12px}
+.exercise-head{display:flex;justify-content:space-between;gap:8px}.target{color:var(--muted);font-size:12px}
+.set{display:grid;grid-template-columns:42px 1fr 1fr 48px;gap:7px;align-items:center;margin-top:8px}
+.set label{font-size:12px;color:var(--muted)}
+input,select{width:100%;padding:11px;border:1px solid #d1d5db;border-radius:10px;font-size:16px;background:white}
+.small{font-size:12px;color:var(--muted)}.pill{display:inline-block;background:#eef2ff;color:#3730a3;padding:5px 8px;border-radius:999px;font-size:12px;font-weight:700}
+.nav{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid var(--line);display:grid;grid-template-columns:repeat(3,1fr);padding:8px max(8px,env(safe-area-inset-left)) max(8px,env(safe-area-inset-bottom));z-index:10}
+.nav button{background:transparent;color:#6b7280;padding:8px}.nav button.active{color:var(--accent)}
+.hidden{display:none!important}.listrow{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--line)}.listrow:last-child{border-bottom:0}
+.note{background:#eff6ff;border-left:4px solid var(--accent);padding:10px;border-radius:8px;font-size:13px;margin:10px 0}
+</style>
+</head>
+<body>
+<header><h1>MyFitTrainer</h1><p>Train smart • get leaner • stay strong for cricket</p></header>
+<main>
+<section id="dashboard">
+  <div class="card">
+    <h2>Today</h2>
+    <div id="todayWorkout"></div>
+    <button class="full" onclick="showTab('workout')">Start / Continue Workout</button>
+  </div>
+  <div class="card">
+    <h2>Your progress</h2>
+    <div class="statgrid">
+      <div class="stat"><b id="dashWeight">—</b><span>kg current</span></div>
+      <div class="stat"><b id="dashTarget">90</b><span>kg target</span></div>
+      <div class="stat"><b id="dashWaist">—</b><span>cm waist</span></div>
+    </div>
+  </div>
+  <div class="card">
+    <h2>Weekly plan</h2>
+    <div id="weekPlan"></div>
+  </div>
+</section>
+
+<section id="workout" class="hidden">
+  <div class="card">
+    <div class="row">
+      <select id="daySelect" onchange="loadWorkout()"></select>
+      <button class="secondary" onclick="resetWorkout()">Reset</button>
+    </div>
+    <div id="workoutTitle" style="margin-top:12px"></div>
+    <div class="note">Week 1 rule: choose a weight that leaves about 3 good reps in reserve. Log the actual weight and reps after every set.</div>
+  </div>
+  <div id="exerciseList"></div>
+</section>
+
+<section id="progress" class="hidden">
+  <div class="card">
+    <h2>Body measurements</h2>
+    <div class="row">
+      <div><label class="small">Weight (kg)</label><input id="weightInput" type="number" step="0.1" placeholder="98"></div>
+      <div><label class="small">Waist (cm)</label><input id="waistInput" type="number" step="0.1" placeholder="—"></div>
+    </div>
+    <button class="full" onclick="saveMeasurement()">Save measurement</button>
+  </div>
+  <div class="card"><h2>Recent measurements</h2><div id="measurements"></div></div>
+  <div class="card"><h2>Recent workouts</h2><div id="history"></div></div>
+</section>
+</main>
+
+<nav class="nav">
+<button id="navDashboard" class="active" onclick="showTab('dashboard')">🏠<br><small>Home</small></button>
+<button id="navWorkout" onclick="showTab('workout')">🏋️<br><small>Workout</small></button>
+<button id="navProgress" onclick="showTab('progress')">📈<br><small>Progress</small></button>
+</nav>
+
+<script>
+const PLAN={
+Monday:{name:"Upper Body Strength",type:"Strength", exercises:[
+["Chest Press","3","8–12"],["Lat Pulldown","3","8–12"],["Seated Cable Row","3","8–12"],["Incline Dumbbell Press","3","8–12"],["Lateral Raise","3","12–15"],["Face Pull","2","12–15"],["Biceps Curl","2","10–12"],["Triceps Pushdown","2","10–12"]]},
+Tuesday:{name:"Lower Body + Core",type:"Strength", exercises:[
+["Leg Press","3","8–12"],["Romanian Deadlift","3","8–10"],["Walking Lunges","2","8 each leg"],["Leg Curl","3","10–12"],["Calf Raise","3","12–15"],["Pallof Press","3","10 each side"],["Plank","3","30–45 sec"]]},
+Wednesday:{name:"Cardio + Mobility",type:"Recovery", exercises:[
+["Cardio (bike / treadmill / cross-trainer)","1","40 min"],["Mobility","1","10–15 min"]]},
+Thursday:{name:"Upper Body Physique",type:"Hypertrophy", exercises:[
+["Incline Dumbbell Press","3","8–12"],["Lat Pulldown / Assisted Pull-up","3","8–12"],["Machine Chest Press","3","10–12"],["One-arm Cable Row","3","10 each"],["Lateral Raise","3","12–15"],["Rear-delt Fly","3","12–15"],["Biceps Curl","2","10–12"],["Triceps Extension","2","10–12"]]},
+Friday:{name:"Lower Body + Athletic Fitness",type:"Athletic", exercises:[
+["Goblet Squat","3","8–10"],["Hip Thrust","3","10–12"],["Leg Curl","2","10–12"],["Calf Raise","2","12–15"],["Cable Woodchop","3","10 each side"],["Farmer's Carry","3","30–40 m"],["Bike Intervals (optional)","5","30 sec hard / 90 sec easy"]]}
+};
+const DAYS=["Monday","Tuesday","Wednesday","Thursday","Friday"];
+const key="myfittrainer_v1";
+let db=JSON.parse(localStorage.getItem(key)||'{"sets":[],"measurements":[],"workouts":[]}');
+function save(){localStorage.setItem(key,JSON.stringify(db))}
+function dateKey(d=new Date()){return d.toISOString().slice(0,10)}
+function currentDay(){return ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"][new Date().getDay()]}
+function showTab(tab){
+  ["dashboard","workout","progress"].forEach(x=>document.getElementById(x).classList.toggle("hidden",x!==tab));
+  ["navDashboard","navWorkout","navProgress"].forEach(x=>document.getElementById(x).classList.remove("active"));
+  document.getElementById("nav"+tab[0].toUpperCase()+tab.slice(1)).classList.add("active");
+  if(tab==="progress")renderProgress();
+}
+function init(){
+  const sel=document.getElementById("daySelect");
+  DAYS.forEach(d=>sel.add(new Option(d+" — "+PLAN[d].name,d)));
+  const cd=currentDay(); sel.value=DAYS.includes(cd)?cd:"Monday";
+  renderDashboard(); loadWorkout();
+}
+function renderDashboard(){
+  const m=db.measurements.at(-1);
+  document.getElementById("dashWeight").textContent=m?.weight??"98";
+  document.getElementById("dashWaist").textContent=m?.waist??"—";
+  const cd=currentDay();
+  document.getElementById("todayWorkout").innerHTML=DAYS.includes(cd)?
+    `<h3>${cd} — ${PLAN[cd].name}</h3><span class="pill">${PLAN[cd].type}</span>`:
+    `<h3>Weekend — Cricket / Recovery</h3><span class="pill">Sport</span>`;
+  document.getElementById("weekPlan").innerHTML=DAYS.map(d=>`<div class="listrow"><span><b>${d}</b> — ${PLAN[d].name}</span><span class="small">${PLAN[d].exercises.length} items</span></div>`).join("")+
+  `<div class="listrow"><span><b>Saturday</b> — Indoor cricket</span><span>🏏</span></div><div class="listrow"><span><b>Sunday</b> — Cricket / recovery</span><span>🏏</span></div>`;
+}
+function loadWorkout(){
+  const day=document.getElementById("daySelect").value, p=PLAN[day];
+  document.getElementById("workoutTitle").innerHTML=`<h2>${day} — ${p.name}</h2><span class="pill">${p.type}</span>`;
+  document.getElementById("exerciseList").innerHTML=p.exercises.map((e,i)=>{
+    const prev=db.sets.filter(s=>s.exercise===e[0]).slice(-3);
+    const prevText=prev.length?prev.map(s=>`${s.weight||"—"} kg × ${s.reps||"—"}`).join(" • "):"No previous entry";
+    let sets="";
+    for(let n=1;n<=+e[1];n++){
+      sets+=`<div class="set"><label>Set ${n}</label><input inputmode="decimal" id="w-${i}-${n}" type="number" step="0.5" placeholder="kg"><input inputmode="numeric" id="r-${i}-${n}" type="number" step="1" placeholder="reps"><button class="ok" onclick="logSet('${day}',${i},${n})">✓</button></div>`;
+    }
+    return `<div class="exercise"><div class="exercise-head"><div><h3>${e[0]}</h3><div class="target">Target: ${e[1]} × ${e[2]}</div></div></div><div class="small" style="margin-top:7px">Previous: ${prevText}</div>${sets}<button class="secondary full" onclick="fillPrevious(${i},${e[1]})">Use previous weights</button></div>`;
+  }).join("");
+}
+function fillPrevious(i,count){
+  const day=document.getElementById("daySelect").value, ex=PLAN[day].exercises[i][0];
+  const prev=db.sets.filter(s=>s.exercise===ex).slice(-count);
+  prev.forEach((s,idx)=>{let n=idx+1; const w=document.getElementById(`w-${i}-${n}`),r=document.getElementById(`r-${i}-${n}`); if(w)w.value=s.weight||"";if(r)r.value=s.reps||""});
+}
+function logSet(day,i,n){
+  const ex=PLAN[day].exercises[i][0], w=document.getElementById(`w-${i}-${n}`).value, r=document.getElementById(`r-${i}-${n}`).value;
+  if(!w||!r){alert("Enter weight and reps first.");return}
+  db.sets.push({date:dateKey(),day,exercise:ex,set:n,weight:Number(w),reps:Number(r)});
+  save(); alert(`${ex}: Set ${n} saved.`);
+}
+function resetWorkout(){loadWorkout()}
+function saveMeasurement(){
+  const w=document.getElementById("weightInput").value, waist=document.getElementById("waistInput").value;
+  if(!w){alert("Enter your weight.");return}
+  db.measurements.push({date:dateKey(),weight:Number(w),waist:waist?Number(waist):null});save();
+  document.getElementById("weightInput").value="";document.getElementById("waistInput").value="";
+  renderProgress();renderDashboard();
+}
+function renderProgress(){
+  document.getElementById("measurements").innerHTML=db.measurements.slice(-10).reverse().map(m=>`<div class="listrow"><span>${m.date}</span><span><b>${m.weight} kg</b>${m.waist?` • ${m.waist} cm waist`:""}</span></div>`).join("")||"<p class='small'>No measurements yet.</p>";
+  const dates=[...new Set(db.sets.map(s=>s.date))].slice(-10).reverse();
+  document.getElementById("history").innerHTML=dates.map(d=>{const x=db.sets.filter(s=>s.date===d);return `<div class="listrow"><span><b>${d}</b></span><span>${x.length} sets logged</span></div>`}).join("")||"<p class='small'>No workouts logged yet.</p>";
+}
+if("serviceWorker" in navigator) navigator.serviceWorker.register("sw.js").catch(()=>{});
+init();
+</script>
+</body>
+</html>
