@@ -1,9 +1,5 @@
-# MyFitTrainer V1.5
+# MyFitTrainer V1.6
 
-Updated workout navigation, set logging/editing, rest timer refresh, workout restoration, parking reminder, and a separate restart-session control.
+Targeted iPhone Home Screen app update: explicit repaint after workout actions, re-render on foreground/pageshow, save on pagehide, and a new service-worker cache version that fetches HTML/scripts/styles network-first.
 
-## Deploy
-Upload `index.html`, `manifest.json`, `sw.js`, and `README.md` to the root of the existing GitHub Pages repository, replacing the existing files, then commit. Open the Pages URL with `?v=15` to request the latest page.
-
-## Data
-Workout records remain in browser local storage under `myfittrainer_v1`. Do not clear site data during updates. Refresh reloads the app and does not intentionally clear stored records.
+Deploy `index.html`, `manifest.json`, `sw.js`, and `README.md` to the root of the existing GitHub Pages repository. Existing local workout storage key remains `myfittrainer_v1`.

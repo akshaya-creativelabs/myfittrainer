@@ -1,4 +1,4 @@
-const CACHE_NAME = "myfittrainer-v1-6";
+const CACHE_NAME = "myfittrainer-v1-7";
 const ASSETS = ["./", "./index.html", "./manifest.json"];
 self.addEventListener("install", event => {
   event.waitUntil(
@@ -32,6 +32,18 @@ self.addEventListener("fetch", event => {
         })
         .catch(() => caches.match(event.request).then(response => response || caches.match("./index.html")))
     );
+    return;
+  }
+  // Scripts and styles are fetched from the network first so installed Home Screen
+  // apps don't keep executing stale JavaScript after a deployment.
+  if (event.request.destination === "script" || event.request.destination === "style" || event.request.destination === "document") {
+    event.respondWith(fetch(event.request).then(response => {
+      if (response && response.ok) {
+        const copy = response.clone();
+        caches.open(CACHE_NAME).then(cache => cache.put(event.request, copy));
+      }
+      return response;
+    }).catch(() => caches.match(event.request)));
     return;
   }
   event.respondWith(caches.match(event.request).then(cached => cached || fetch(event.request).then(response => {
