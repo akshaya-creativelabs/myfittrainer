@@ -1,19 +1,20 @@
-# MyFitTrainer V1
+# MyFitTrainer V1.1
 
-A phone-first Progressive Web App for the personal training programme.
+Improvements:
+- Date/day in header and current/weekly/final weight targets
+- Full workout preview before starting
+- Guided one-exercise-at-a-time session
+- Set 1 unlocked first; subsequent sets unlock when saved
+- Previous performance and progression suggestion
+- Rest timer after each set, with skip button
+- Exercise substitution option for unavailable equipment
+- Form cues for each exercise
+- Day summary with completed/pending exercises
+- Session complete/cool-down flow and restart option
+- Timestamped body measurements with edit
+- Exercise history and session history
+- Resume an unfinished session after reopening
 
-## V1 features
-- Monday-Friday workout plan
-- Set-by-set weight/reps logging
-- Previous performance shown for each exercise
-- "Use previous weights" shortcut
-- Body-weight and waist tracking
-- Workout history
-- Local browser storage (no account/server)
-- PWA manifest + service worker
+Deploy: upload `index.html`, `manifest.json`, and `sw.js` to the root of the existing GitHub repository, replacing old versions. Keep the same URL.
 
-## Running on iPhone
-The app must be served over HTTPS (or localhost) for PWA/service-worker features. The simplest Windows-friendly approach is to publish this folder to a static HTTPS host such as GitHub Pages, then open the URL in Safari and use Share -> Add to Home Screen.
-
-## Important
-V1 stores data in the browser's local storage. Clearing Safari website data can remove the log, so this version should not yet be treated as the only copy of your fitness records.
+Data: retains the `myfittrainer_v1` localStorage key for basic V1 data in the same browser. Local browser data is not a cloud backup; don't clear website data. Exercise GIF/video demos are deferred to a later iteration; V1.1 includes form cues instead.

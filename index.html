@@ -1,171 +1,53 @@
-<!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#111827">
-<link rel="manifest" href="manifest.json">
-<title>MyFitTrainer</title>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#111827"><link rel="manifest" href="manifest.json"><title>MyFitTrainer</title>
 <style>
-:root{--bg:#f4f6f8;--card:#fff;--ink:#111827;--muted:#6b7280;--accent:#2563eb;--ok:#16a34a;--line:#e5e7eb;--danger:#dc2626}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;padding-bottom:76px}
-header{background:#111827;color:#fff;padding:22px 18px 18px;position:sticky;top:0;z-index:5}
-header h1{font-size:24px;margin:0 0 4px} header p{margin:0;color:#cbd5e1;font-size:13px}
-main{max-width:720px;margin:auto;padding:16px}
-.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px;margin-bottom:14px;box-shadow:0 2px 8px #00000008}
-h2{font-size:18px;margin:0 0 12px}h3{font-size:16px;margin:0 0 8px}
-.statgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.stat{background:#f8fafc;border-radius:12px;padding:12px}.stat b{font-size:21px;display:block}.stat span{font-size:12px;color:var(--muted)}
-button{border:0;border-radius:12px;padding:12px 14px;font-weight:700;font-size:14px;background:var(--accent);color:white;cursor:pointer}
-button.secondary{background:#e5e7eb;color:#111827}button.ok{background:var(--ok)}button.danger{background:var(--danger)}
-button.full{width:100%;margin-top:8px}.row{display:flex;gap:8px;align-items:center}.row>*{flex:1}
-.exercise{border:1px solid var(--line);border-radius:14px;padding:14px;margin-bottom:12px}
-.exercise-head{display:flex;justify-content:space-between;gap:8px}.target{color:var(--muted);font-size:12px}
-.set{display:grid;grid-template-columns:42px 1fr 1fr 48px;gap:7px;align-items:center;margin-top:8px}
-.set label{font-size:12px;color:var(--muted)}
-input,select{width:100%;padding:11px;border:1px solid #d1d5db;border-radius:10px;font-size:16px;background:white}
-.small{font-size:12px;color:var(--muted)}.pill{display:inline-block;background:#eef2ff;color:#3730a3;padding:5px 8px;border-radius:999px;font-size:12px;font-weight:700}
-.nav{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid var(--line);display:grid;grid-template-columns:repeat(3,1fr);padding:8px max(8px,env(safe-area-inset-left)) max(8px,env(safe-area-inset-bottom));z-index:10}
-.nav button{background:transparent;color:#6b7280;padding:8px}.nav button.active{color:var(--accent)}
-.hidden{display:none!important}.listrow{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--line)}.listrow:last-child{border-bottom:0}
-.note{background:#eff6ff;border-left:4px solid var(--accent);padding:10px;border-radius:8px;font-size:13px;margin:10px 0}
-</style>
-</head>
-<body>
-<header><h1>MyFitTrainer</h1><p>Train smart • get leaner • stay strong for cricket</p></header>
+:root{--bg:#f3f5f8;--card:#fff;--ink:#111827;--muted:#64748b;--blue:#2563eb;--green:#15803d;--line:#e2e8f0}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;padding-bottom:75px}header{background:#111827;color:white;padding:16px;position:sticky;top:0;z-index:3}.top{display:flex;justify-content:space-between;align-items:center}h1{font-size:22px;margin:0}header .date{text-align:right;font-size:12px;color:#cbd5e1}header p{font-size:12px;color:#cbd5e1;margin:5px 0 0}main{max-width:700px;margin:auto;padding:12px}.card,.excard{background:white;border:1px solid var(--line);border-radius:15px;padding:14px;margin-bottom:12px}h2{font-size:18px;margin:0 0 12px}h3{font-size:16px;margin:0 0 5px}.muted,.small{font-size:12px;color:var(--muted)}button{border:0;border-radius:11px;background:var(--blue);color:white;font-size:14px;font-weight:700;padding:12px;cursor:pointer}button.secondary{background:#e2e8f0;color:#111827}button.green{background:var(--green)}button:disabled{opacity:.35}button.full{width:100%;margin-top:8px}.row{display:flex;gap:8px;align-items:center}.row>*{flex:1;min-width:0}input,select{width:100%;padding:11px;border:1px solid #cbd5e1;border-radius:10px;font-size:16px;background:white;color:#111827}label{display:block;font-size:12px;color:var(--muted);margin:8px 0 5px}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:7px}.stat{background:#f8fafc;padding:10px;border-radius:10px}.stat b{display:block;font-size:20px}.stat span{font-size:11px;color:var(--muted)}.nav{position:fixed;bottom:0;left:0;right:0;display:grid;grid-template-columns:repeat(3,1fr);background:white;border-top:1px solid var(--line);padding:6px 8px max(6px,env(safe-area-inset-bottom));z-index:5}.nav button{background:transparent;color:var(--muted);padding:7px}.nav button.active{color:var(--blue)}.hidden{display:none!important}.listrow{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:10px 0;border-bottom:1px solid var(--line)}.listrow:last-child{border:0}.pill{display:inline-block;background:#eef2ff;color:#3730a3;border-radius:30px;padding:5px 8px;font-size:12px;font-weight:700}.notice{background:#eff6ff;border-left:4px solid var(--blue);padding:10px;border-radius:8px;font-size:13px;margin:10px 0}.bubble{background:#ecfdf5;color:#166534;padding:10px;border-radius:10px;font-size:13px;margin:10px 0}.demo{background:#f8fafc;border:1px dashed #cbd5e1;border-radius:10px;padding:10px;font-size:13px;margin:10px 0}.setrow{display:grid;grid-template-columns:45px 1fr 1fr 48px;gap:6px;align-items:center;margin-top:8px}.setrow input{text-align:center;padding:10px 3px}.setrow button{padding:10px 0}.timer{text-align:center;font-size:24px;font-weight:800;padding:8px}.bar{height:7px;background:#e2e8f0;border-radius:20px;overflow:hidden;margin:8px 0}.bar span{display:block;background:var(--green);height:100%}
+</style></head><body>
+<header><div class="top"><h1>MyFitTrainer</h1><div class="date" id="dateDay"></div></div><p>Train smart · get leaner · stay strong for cricket</p></header>
 <main>
-<section id="dashboard">
-  <div class="card">
-    <h2>Today</h2>
-    <div id="todayWorkout"></div>
-    <button class="full" onclick="showTab('workout')">Start / Continue Workout</button>
-  </div>
-  <div class="card">
-    <h2>Your progress</h2>
-    <div class="statgrid">
-      <div class="stat"><b id="dashWeight">—</b><span>kg current</span></div>
-      <div class="stat"><b id="dashTarget">90</b><span>kg target</span></div>
-      <div class="stat"><b id="dashWaist">—</b><span>cm waist</span></div>
-    </div>
-  </div>
-  <div class="card">
-    <h2>Weekly plan</h2>
-    <div id="weekPlan"></div>
-  </div>
-</section>
-
-<section id="workout" class="hidden">
-  <div class="card">
-    <div class="row">
-      <select id="daySelect" onchange="loadWorkout()"></select>
-      <button class="secondary" onclick="resetWorkout()">Reset</button>
-    </div>
-    <div id="workoutTitle" style="margin-top:12px"></div>
-    <div class="note">Week 1 rule: choose a weight that leaves about 3 good reps in reserve. Log the actual weight and reps after every set.</div>
-  </div>
-  <div id="exerciseList"></div>
-</section>
-
-<section id="progress" class="hidden">
-  <div class="card">
-    <h2>Body measurements</h2>
-    <div class="row">
-      <div><label class="small">Weight (kg)</label><input id="weightInput" type="number" step="0.1" placeholder="98"></div>
-      <div><label class="small">Waist (cm)</label><input id="waistInput" type="number" step="0.1" placeholder="—"></div>
-    </div>
-    <button class="full" onclick="saveMeasurement()">Save measurement</button>
-  </div>
-  <div class="card"><h2>Recent measurements</h2><div id="measurements"></div></div>
-  <div class="card"><h2>Recent workouts</h2><div id="history"></div></div>
-</section>
-</main>
-
-<nav class="nav">
-<button id="navDashboard" class="active" onclick="showTab('dashboard')">🏠<br><small>Home</small></button>
-<button id="navWorkout" onclick="showTab('workout')">🏋️<br><small>Workout</small></button>
-<button id="navProgress" onclick="showTab('progress')">📈<br><small>Progress</small></button>
-</nav>
-
+<section id="home"><div class="card"><h2>Today's plan</h2><div id="todayPlan"></div><button class="full" onclick="openWorkout()">Start / continue workout</button></div><div class="card"><h2>Your progress</h2><div class="stats"><div class="stat"><b id="currentWeight">98</b><span>Current kg</span></div><div class="stat"><b id="weeklyTarget">97.6</b><span>Weekly target</span></div><div class="stat"><b>90</b><span>Final target kg</span></div></div><p class="small" id="targetNote">Weekly targets are estimates, not deadlines.</p></div><div class="card"><h2>Weekly plan</h2><div id="weekPlan"></div></div></section>
+<section id="workout" class="hidden"><div id="chooseCard" class="card"><h2>Choose workout</h2><label>Training day</label><select id="daySelect" onchange="previewPlan()"></select><div id="planPreview"></div><button class="full" onclick="startSession()">Start session</button></div><div id="sessionView" class="hidden"></div></section>
+<section id="progress" class="hidden"><div class="card"><h2>Body measurements</h2><div class="row"><div><label>Weight (kg)</label><input id="weightInput" type="number" step=".1" placeholder="98.0"></div><div><label>Waist (cm)</label><input id="waistInput" type="number" step=".1" placeholder="Optional"></div></div><button class="full" onclick="saveMeasurement()">Save measurement</button></div><div class="card"><h2>Measurement history</h2><div id="measurements"></div></div><div class="card"><h2>Exercise history</h2><label>Choose exercise</label><select id="historyExercise" onchange="renderExerciseHistory()"></select><div id="exerciseHistory"></div></div><div class="card"><h2>Session history</h2><div id="sessionHistory"></div></div></section>
+</main><nav class="nav"><button id="navHome" class="active" onclick="showTab('home')">🏠<br><small>Home</small></button><button id="navWorkout" onclick="showTab('workout')">🏋️<br><small>Workout</small></button><button id="navProgress" onclick="showTab('progress')">📈<br><small>Progress</small></button></nav>
 <script>
 const PLAN={
-Monday:{name:"Upper Body Strength",type:"Strength", exercises:[
-["Chest Press","3","8–12"],["Lat Pulldown","3","8–12"],["Seated Cable Row","3","8–12"],["Incline Dumbbell Press","3","8–12"],["Lateral Raise","3","12–15"],["Face Pull","2","12–15"],["Biceps Curl","2","10–12"],["Triceps Pushdown","2","10–12"]]},
-Tuesday:{name:"Lower Body + Core",type:"Strength", exercises:[
-["Leg Press","3","8–12"],["Romanian Deadlift","3","8–10"],["Walking Lunges","2","8 each leg"],["Leg Curl","3","10–12"],["Calf Raise","3","12–15"],["Pallof Press","3","10 each side"],["Plank","3","30–45 sec"]]},
-Wednesday:{name:"Cardio + Mobility",type:"Recovery", exercises:[
-["Cardio (bike / treadmill / cross-trainer)","1","40 min"],["Mobility","1","10–15 min"]]},
-Thursday:{name:"Upper Body Physique",type:"Hypertrophy", exercises:[
-["Incline Dumbbell Press","3","8–12"],["Lat Pulldown / Assisted Pull-up","3","8–12"],["Machine Chest Press","3","10–12"],["One-arm Cable Row","3","10 each"],["Lateral Raise","3","12–15"],["Rear-delt Fly","3","12–15"],["Biceps Curl","2","10–12"],["Triceps Extension","2","10–12"]]},
-Friday:{name:"Lower Body + Athletic Fitness",type:"Athletic", exercises:[
-["Goblet Squat","3","8–10"],["Hip Thrust","3","10–12"],["Leg Curl","2","10–12"],["Calf Raise","2","12–15"],["Cable Woodchop","3","10 each side"],["Farmer's Carry","3","30–40 m"],["Bike Intervals (optional)","5","30 sec hard / 90 sec easy"]]}
+Monday:{name:"Upper Body Strength",items:[["Chest Press",3,"8–12","kg","reps",90,"Dumbbell Bench Press","Keep shoulder blades supported; press smoothly."],["Lat Pulldown",3,"8–12","kg","reps",90,"Assisted Pull-up","Pull toward upper chest without swinging."],["Seated Cable Row",3,"8–12","kg","reps",90,"Chest-supported Row","Keep torso steady; pull elbows back."],["Incline Dumbbell Press",3,"8–12","kg","reps",90,"Incline Chest Press Machine","Use a comfortable range; wrists over elbows."],["Lateral Raise",3,"12–15","kg","reps",60,"Lateral Raise Machine","Raise to shoulder height without shrugging."],["Face Pull",2,"12–15","kg","reps",60,"Reverse Pec Deck","Use a light load; pull toward face."],["Biceps Curl",2,"10–12","kg","reps",60,"Cable Curl","Avoid swinging."],["Triceps Pushdown",2,"10–12","kg","reps",60,"Overhead Cable Extension","Keep elbows near your sides."]]},
+Tuesday:{name:"Lower Body + Core",items:[["Leg Press",3,"8–12","kg","reps",120,"Goblet Squat","Keep back supported and use a comfortable depth."],["Romanian Deadlift",3,"8–10","kg","reps",120,"Cable Pull-through","Hinge at hips; keep weights close and spine neutral."],["Walking Lunges",2,"8 each leg","kg","reps/leg",90,"Supported Split Squat","Use support if balance is uncertain."],["Leg Curl",3,"10–12","kg","reps",75,"Stability-ball Curl","Control both directions."],["Calf Raise",3,"12–15","kg","reps",60,"Seated Calf Raise","Pause at the top and lower slowly."],["Pallof Press",3,"10 each side","kg","reps/side",60,"Dead Bug","Resist rotation; stay steady."],["Plank",3,"30–45 sec","bodyweight","seconds",60,"Incline Plank","Stop before lower back sags."]]},
+Wednesday:{name:"Cardio + Mobility",items:[["Cardio (bike / treadmill / cross-trainer)",1,"40 min","minutes","minutes",0,"Brisk outdoor walk","Moderate pace: you can still speak in sentences."],["Mobility",1,"10–15 min","minutes","minutes",0,"Gentle mobility flow","Move gently; do not force stretches."]]},
+Thursday:{name:"Upper Body Physique",items:[["Incline Dumbbell Press",3,"8–12","kg","reps",90,"Incline Chest Press Machine","Controlled movement, shoulders comfortable."],["Lat Pulldown / Assisted Pull-up",3,"8–12","kg or assist","reps",90,"Lat Pulldown","Avoid swinging; choose one variation."],["Machine Chest Press",3,"10–12","kg","reps",90,"Dumbbell Bench Press","Set handles around mid-chest height."],["One-arm Cable Row",3,"10 each","kg","reps/side",75,"One-arm Dumbbell Row","Avoid twisting your torso."],["Lateral Raise",3,"12–15","kg","reps",60,"Cable Lateral Raise","Light load and controlled motion."],["Rear-delt Fly",3,"12–15","kg","reps",60,"Reverse Pec Deck","Avoid shrugging."],["Biceps Curl",2,"10–12","kg","reps",60,"Hammer Curl","Keep elbows near sides."],["Triceps Extension",2,"10–12","kg","reps",60,"Triceps Pushdown","Keep elbows stable and pain-free."]]},
+Friday:{name:"Lower Body + Athletic Fitness",items:[["Goblet Squat",3,"8–10","kg","reps",90,"Leg Press","Comfortable depth; feet stay planted."],["Hip Thrust",3,"10–12","kg","reps",90,"Glute Bridge","Finish with glutes, not lower-back arching."],["Leg Curl",2,"10–12","kg","reps",75,"Light Romanian Deadlift","Control the movement."],["Calf Raise",2,"12–15","kg","reps",60,"Seated Calf Raise","Full comfortable range."],["Cable Woodchop",3,"10 each side","kg","reps/side",60,"Pallof Press","Move in a controlled way; don't yank."],["Farmer's Carry",3,"30–40 m","kg per hand","metres",60,"Suitcase Carry","Walk tall with controlled steps."],["Bike Intervals (optional)",5,"30 sec hard / 90 sec easy","seconds","intervals",0,"Easy bike","Skip if cricket is next day or legs feel tired."]]}
 };
-const DAYS=["Monday","Tuesday","Wednesday","Thursday","Friday"];
-const key="myfittrainer_v1";
-let db=JSON.parse(localStorage.getItem(key)||'{"sets":[],"measurements":[],"workouts":[]}');
-function save(){localStorage.setItem(key,JSON.stringify(db))}
-function dateKey(d=new Date()){return d.toISOString().slice(0,10)}
-function currentDay(){return ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"][new Date().getDay()]}
-function showTab(tab){
-  ["dashboard","workout","progress"].forEach(x=>document.getElementById(x).classList.toggle("hidden",x!==tab));
-  ["navDashboard","navWorkout","navProgress"].forEach(x=>document.getElementById(x).classList.remove("active"));
-  document.getElementById("nav"+tab[0].toUpperCase()+tab.slice(1)).classList.add("active");
-  if(tab==="progress")renderProgress();
-}
-function init(){
-  const sel=document.getElementById("daySelect");
-  DAYS.forEach(d=>sel.add(new Option(d+" — "+PLAN[d].name,d)));
-  const cd=currentDay(); sel.value=DAYS.includes(cd)?cd:"Monday";
-  renderDashboard(); loadWorkout();
-}
-function renderDashboard(){
-  const m=db.measurements.at(-1);
-  document.getElementById("dashWeight").textContent=m?.weight??"98";
-  document.getElementById("dashWaist").textContent=m?.waist??"—";
-  const cd=currentDay();
-  document.getElementById("todayWorkout").innerHTML=DAYS.includes(cd)?
-    `<h3>${cd} — ${PLAN[cd].name}</h3><span class="pill">${PLAN[cd].type}</span>`:
-    `<h3>Weekend — Cricket / Recovery</h3><span class="pill">Sport</span>`;
-  document.getElementById("weekPlan").innerHTML=DAYS.map(d=>`<div class="listrow"><span><b>${d}</b> — ${PLAN[d].name}</span><span class="small">${PLAN[d].exercises.length} items</span></div>`).join("")+
-  `<div class="listrow"><span><b>Saturday</b> — Indoor cricket</span><span>🏏</span></div><div class="listrow"><span><b>Sunday</b> — Cricket / recovery</span><span>🏏</span></div>`;
-}
-function loadWorkout(){
-  const day=document.getElementById("daySelect").value, p=PLAN[day];
-  document.getElementById("workoutTitle").innerHTML=`<h2>${day} — ${p.name}</h2><span class="pill">${p.type}</span>`;
-  document.getElementById("exerciseList").innerHTML=p.exercises.map((e,i)=>{
-    const prev=db.sets.filter(s=>s.exercise===e[0]).slice(-3);
-    const prevText=prev.length?prev.map(s=>`${s.weight||"—"} kg × ${s.reps||"—"}`).join(" • "):"No previous entry";
-    let sets="";
-    for(let n=1;n<=+e[1];n++){
-      sets+=`<div class="set"><label>Set ${n}</label><input inputmode="decimal" id="w-${i}-${n}" type="number" step="0.5" placeholder="kg"><input inputmode="numeric" id="r-${i}-${n}" type="number" step="1" placeholder="reps"><button class="ok" onclick="logSet('${day}',${i},${n})">✓</button></div>`;
-    }
-    return `<div class="exercise"><div class="exercise-head"><div><h3>${e[0]}</h3><div class="target">Target: ${e[1]} × ${e[2]}</div></div></div><div class="small" style="margin-top:7px">Previous: ${prevText}</div>${sets}<button class="secondary full" onclick="fillPrevious(${i},${e[1]})">Use previous weights</button></div>`;
-  }).join("");
-}
-function fillPrevious(i,count){
-  const day=document.getElementById("daySelect").value, ex=PLAN[day].exercises[i][0];
-  const prev=db.sets.filter(s=>s.exercise===ex).slice(-count);
-  prev.forEach((s,idx)=>{let n=idx+1; const w=document.getElementById(`w-${i}-${n}`),r=document.getElementById(`r-${i}-${n}`); if(w)w.value=s.weight||"";if(r)r.value=s.reps||""});
-}
-function logSet(day,i,n){
-  const ex=PLAN[day].exercises[i][0], w=document.getElementById(`w-${i}-${n}`).value, r=document.getElementById(`r-${i}-${n}`).value;
-  if(!w||!r){alert("Enter weight and reps first.");return}
-  db.sets.push({date:dateKey(),day,exercise:ex,set:n,weight:Number(w),reps:Number(r)});
-  save(); alert(`${ex}: Set ${n} saved.`);
-}
-function resetWorkout(){loadWorkout()}
-function saveMeasurement(){
-  const w=document.getElementById("weightInput").value, waist=document.getElementById("waistInput").value;
-  if(!w){alert("Enter your weight.");return}
-  db.measurements.push({date:dateKey(),weight:Number(w),waist:waist?Number(waist):null});save();
-  document.getElementById("weightInput").value="";document.getElementById("waistInput").value="";
-  renderProgress();renderDashboard();
-}
-function renderProgress(){
-  document.getElementById("measurements").innerHTML=db.measurements.slice(-10).reverse().map(m=>`<div class="listrow"><span>${m.date}</span><span><b>${m.weight} kg</b>${m.waist?` • ${m.waist} cm waist`:""}</span></div>`).join("")||"<p class='small'>No measurements yet.</p>";
-  const dates=[...new Set(db.sets.map(s=>s.date))].slice(-10).reverse();
-  document.getElementById("history").innerHTML=dates.map(d=>{const x=db.sets.filter(s=>s.date===d);return `<div class="listrow"><span><b>${d}</b></span><span>${x.length} sets logged</span></div>`}).join("")||"<p class='small'>No workouts logged yet.</p>";
-}
-if("serviceWorker" in navigator) navigator.serviceWorker.register("sw.js").catch(()=>{});
-init();
-</script>
-</body>
-</html>
+const DAYS=Object.keys(PLAN), KEY="myfittrainer_v1";
+let db=JSON.parse(localStorage.getItem(KEY)||'{"sets":[],"measurements":[],"sessions":[]}'),session=null,restInterval=null,restLeft=0;
+function save(){localStorage.setItem(KEY,JSON.stringify(db))}function today(){return new Date().toISOString().slice(0,10)}function stamp(){return new Date().toLocaleString([],{year:"numeric",month:"short",day:"numeric",hour:"2-digit",minute:"2-digit"})}
+function esc(s){return String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+function day(){return ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"][new Date().getDay()]}
+function showTab(t){["home","workout","progress"].forEach(x=>document.getElementById(x).classList.toggle("hidden",x!==t));["navHome","navWorkout","navProgress"].forEach(x=>document.getElementById(x).classList.remove("active"));document.getElementById("nav"+t[0].toUpperCase()+t.slice(1)).classList.add("active");if(t==="progress")renderProgress()}
+function last(ex){return db.sets.filter(s=>s.exercise===ex).slice(-3)}
+function advice(ex){let a=last(ex);return a.length&&a.slice(-3).every(s=>s.reps>=12)?"If all sets felt controlled with 2–3 reps left, consider the smallest weight increase next time.":"Use the last successful load as a guide; build reps with good form before increasing weight."}
+function init(){document.getElementById("dateDay").innerHTML=new Date().toLocaleDateString([],{weekday:"short",day:"numeric",month:"short"})+"<br>"+day();DAYS.forEach(d=>document.getElementById("daySelect").add(new Option(d+" · "+PLAN[d].name,d)));document.getElementById("daySelect").value=DAYS.includes(day())?day():"Monday";previewPlan();renderHome();restoreSession()}
+function renderHome(){let m=db.measurements.at(-1),w=m?.weight??98;document.getElementById("currentWeight").textContent=w;let weeks=Math.max(0,Math.floor((new Date()-new Date("2026-10-05"))/604800000));document.getElementById("weeklyTarget").textContent=Math.max(90,98-.4*weeks).toFixed(1);document.getElementById("targetNote").textContent="Illustrative target: about 0.4 kg/week toward 90 kg. Use your actual trend, not one day's fluctuation.";let d=day();document.getElementById("todayPlan").innerHTML=`<h3>${DAYS.includes(d)?d+" · "+PLAN[d].name:"Weekend · Indoor cricket / recovery"}</h3><p class="muted">${DAYS.includes(d)?PLAN[d].items.length+" exercises/activities":"Cricket counts as your sport session. Warm up before playing."}</p>`;document.getElementById("weekPlan").innerHTML=DAYS.map(d=>`<div class="listrow"><span><b>${d}</b><br><span class="small">${PLAN[d].name}</span></span><span>${PLAN[d].items.length} items</span></div>`).join("")+`<div class="listrow"><span><b>Saturday & Sunday</b><br><span class="small">Indoor cricket / recovery</span></span>🏏</div>`}
+function previewPlan(){let d=document.getElementById("daySelect").value;document.getElementById("planPreview").innerHTML=`<p class="muted">Full plan preview. If equipment is unavailable, substitute an alternative during the session.</p>`+PLAN[d].items.map((e,i)=>`<div class="listrow"><span>${i+1}. ${esc(e[0])}</span><span class="small">${e[1]} × ${esc(e[2])}</span></div>`).join("")}
+function openWorkout(){showTab("workout");if(session&&!session.completed){renderSession();return}previewPlan()}
+function startSession(){let d=document.getElementById("daySelect").value;session={id:Date.now(),date:today(),started:stamp(),day:d,idx:0,completed:false,summary:false,items:PLAN[d].items.map(e=>({name:e[0],original:e[0],sets:e[1],target:e[2],unit:e[3],repUnit:e[4],rest:e[5],alternative:e[6],form:e[7],logs:[]}))};persistSession();renderSession()}
+function persistSession(){db.sessions=db.sessions.filter(s=>s.id!==session.id);db.sessions.push(JSON.parse(JSON.stringify(session)));save()}
+function renderSession(){let host=document.getElementById("sessionView");host.classList.remove("hidden");document.getElementById("chooseCard").classList.add("hidden");if(session.completed){host.innerHTML=`<div class="card"><h2>Session complete 🎉</h2><p>${esc(session.day)} · ${esc(session.started)}</p><p>Cool down with 5–10 minutes of gentle walking and comfortable mobility.</p><button class="full" onclick="showSummary()">View day summary</button><button class="full secondary" onclick="newSession()">Start a new session</button></div>`;return}if(session.summary){showSummary();return}
+let it=session.items[session.idx],nDone=session.items.filter(i=>i.logs.length>=i.sets).length,logged=it.logs.length,isTimed=["minutes","seconds"].includes(it.unit),prev=last(it.name);
+let sets="";for(let n=0;n<it.sets;n++){let old=it.logs[n],enabled=n===logged;sets+=`<div class="setrow"><div class="small">Set ${n+1}${old?" ✓":""}</div><input id="w${n}" type="number" step=".5" placeholder="${esc(it.unit)}" value="${old?.weight??""}" ${isTimed?"class='hidden'":""} ${enabled?"":"disabled"}><input id="r${n}" type="number" placeholder="${esc(it.repUnit)}" value="${old?.reps??""}" ${enabled?"":"disabled"}><button class="${old?"green":""}" onclick="${old?`editSet(${n})`:`logSet(${n})`}" ${enabled||old?"":"disabled"}>${old?"Edit":"✓"}</button></div>`}
+host.innerHTML=`<div class="card"><div class="row"><span class="pill">${esc(session.day)} · Exercise ${session.idx+1}/${session.items.length}</span><button class="secondary" onclick="showSummary()">Day summary</button></div><div class="bar"><span style="width:${Math.round(nDone/session.items.length*100)}%"></span></div><div class="small">${nDone} of ${session.items.length} exercises complete</div></div><div class="excard"><h2>${esc(it.name)}</h2><div class="muted">Target: ${it.sets} sets · ${esc(it.target)} ${esc(it.repUnit)}</div><div class="demo"><b>Form cues</b><p>${esc(it.form)}</p><p>Use a comfortable load with about 2–3 good reps left. Stop if you feel sharp pain, dizziness or unusual symptoms.</p><span class="small">Exercise GIF/video demos can be added after we choose a reliable demo source.</span></div><div class="small"><b>Previous:</b> ${prev.length?prev.map(s=>`${s.weight??"—"} ${esc(s.unit||"kg")} × ${s.reps} ${esc(s.repUnit||"reps")}`).join(" · "):"No previous entries"}</div><div class="bubble">💡 ${esc(advice(it.name))}</div><label>Equipment unavailable? Substitute</label><select onchange="swapExercise(this.value)"><option value="">Keep current exercise</option><option>${esc(it.alternative)}</option></select><div class="notice">Only Set ${Math.min(logged+1,it.sets)} is enabled. Save each set to unlock the next.</div>${sets}${restLeft?`<div class="card"><div id="timer" class="timer">${fmt(restLeft)}</div><button class="secondary full" onclick="skipRest()">Skip rest</button></div>`:""}<div class="row" style="margin-top:12px"><button class="secondary" onclick="previousExercise()" ${session.idx===0?"disabled":""}>Previous</button><button onclick="nextExercise()" ${logged<it.sets?"disabled":""}>${session.idx===session.items.length-1?"Review summary":"Next exercise →"}</button></div></div>`;if(restLeft)runTimer()}
+function swapExercise(n){if(!n)return;session.items[session.idx].name=n;persistSession();renderSession()}
+function logSet(n){let it=session.items[session.idx],timed=["minutes","seconds"].includes(it.unit),w=timed?null:document.getElementById("w"+n).value,r=document.getElementById("r"+n).value;if(!timed&&!w){alert("Enter weight first.");return}if(!r){alert("Enter reps or time first.");return}let s={date:today(),timestamp:stamp(),sessionId:session.id,day:session.day,exercise:it.name,set:n+1,weight:w?Number(w):null,reps:Number(r),unit:it.unit,repUnit:it.repUnit};it.logs[n]=s;db.sets.push(s);persistSession();save();restLeft=it.rest;renderSession()}
+function editSet(n){let it=session.items[session.idx],s=it.logs[n],w=prompt("Weight ("+it.unit+")",s.weight??""),r=prompt("Reps/time ("+it.repUnit+")",s.reps);if(r===null||w===null)return;s.weight=w?Number(w):null;s.reps=Number(r);let i=db.sets.findIndex(x=>x.sessionId===session.id&&x.exercise===it.name&&x.set===n+1);if(i>=0)db.sets[i]={...s};persistSession();save();renderSession()}
+function nextExercise(){let it=session.items[session.idx];if(it.logs.length<it.sets)return alert("Complete all sets first.");if(session.idx<session.items.length-1)session.idx++;else session.summary=true;persistSession();renderSession()}
+function previousExercise(){if(session.idx>0)session.idx--;persistSession();renderSession()}
+function showSummary(){session.summary=true;persistSession();let host=document.getElementById("sessionView");host.classList.remove("hidden");document.getElementById("chooseCard").classList.add("hidden");host.innerHTML=`<div class="card"><h2>${esc(session.day)} — Day summary</h2><p class="muted">Review completed and pending exercises.</p>${session.items.map((i,n)=>`<div class="listrow"><span>${i.logs.length>=i.sets?"✅":"⏳"} ${esc(i.name)}<br><span class="small">${i.logs.length}/${i.sets} sets logged</span></span><button class="secondary" onclick="jumpExercise(${n})">Open</button></div>`).join("")}<button class="full green" onclick="completeSession()" ${session.items.every(i=>i.logs.length>=i.sets)?"":"disabled"}>Session complete & cool down</button><button class="full secondary" onclick="resumeSession()">Return to workout</button></div>`}
+function jumpExercise(n){session.idx=n;session.summary=false;persistSession();renderSession()}function resumeSession(){session.summary=false;persistSession();renderSession()}
+function completeSession(){if(!session.items.every(i=>i.logs.length>=i.sets))return alert("Finish pending sets first.");session.completed=true;session.summary=false;session.finished=stamp();persistSession();renderSession();renderHome()}
+function newSession(){session=null;document.getElementById("sessionView").classList.add("hidden");document.getElementById("chooseCard").classList.remove("hidden");previewPlan()}
+function fmt(s){return String(Math.floor(s/60)).padStart(2,"0")+":"+String(s%60).padStart(2,"0")}function runTimer(){clearInterval(restInterval);restInterval=setInterval(()=>{restLeft--;let e=document.getElementById("timer");if(e)e.textContent=fmt(restLeft);if(restLeft<=0){clearInterval(restInterval);restInterval=null;restLeft=0;if(navigator.vibrate)navigator.vibrate(120)}},1000)}function skipRest(){clearInterval(restInterval);restInterval=null;restLeft=0;renderSession()}
+function saveMeasurement(){let w=document.getElementById("weightInput").value,wa=document.getElementById("waistInput").value;if(!w)return alert("Enter weight first.");db.measurements.push({id:Date.now(),date:today(),timestamp:stamp(),weight:Number(w),waist:wa?Number(wa):null});save();document.getElementById("weightInput").value="";document.getElementById("waistInput").value="";renderProgress();renderHome()}
+function editMeasurement(id){let m=db.measurements.find(x=>x.id===id),w=prompt("Weight (kg)",m.weight);if(w===null)return;let wa=prompt("Waist (cm), blank if unknown",m.waist??"");m.weight=Number(w);m.waist=wa?Number(wa):null;save();renderProgress();renderHome()}
+function renderProgress(){document.getElementById("measurements").innerHTML=db.measurements.slice().reverse().map(m=>`<div class="listrow"><div><b>${esc(m.date)}</b><br><span class="small">${esc(m.timestamp||"Time not recorded")}</span><br>${m.weight} kg ${m.waist?`· ${m.waist} cm waist`:""}</div><button class="secondary" onclick="editMeasurement(${m.id})">Edit</button></div>`).join("")||'<p class="muted">No measurements yet.</p>';let exs=[...new Set([...Object.values(PLAN).flatMap(p=>p.items.map(e=>e[0])),...db.sets.map(s=>s.exercise)])],sel=document.getElementById("historyExercise"),old=sel.value;sel.innerHTML=exs.map(e=>`<option>${esc(e)}</option>`).join("");if(exs.includes(old))sel.value=old;renderExerciseHistory();document.getElementById("sessionHistory").innerHTML=db.sessions.slice().reverse().map(s=>`<div class="listrow"><div><b>${esc(s.date)} · ${esc(s.day)}</b><br><span class="small">${esc(s.started)} · ${s.items.filter(i=>i.logs.length>=i.sets).length}/${s.items.length} complete</span></div>${s.completed?"✅":"⏳"}</div>`).join("")||'<p class="muted">No sessions yet.</p>'}
+function renderExerciseHistory(){let ex=document.getElementById("historyExercise").value,rows=db.sets.filter(s=>s.exercise===ex).slice().reverse().slice(0,30);document.getElementById("exerciseHistory").innerHTML=rows.map(s=>`<div class="listrow"><div><b>${esc(s.date)}</b><br><span class="small">${esc(s.timestamp||"Time not recorded")} · ${esc(s.day||"")}</span></div><span>${s.weight??"—"} ${esc(s.unit||"kg")} × ${s.reps} ${esc(s.repUnit||"reps")}</span></div>`).join("")||'<p class="muted">No entries yet.</p>'}
+function restoreSession(){let s=db.sessions.filter(s=>!s.completed).at(-1);if(s){session=s;renderSession()}}
+if("serviceWorker"in navigator)navigator.serviceWorker.register("sw.js").catch(()=>{});init();
+</script></body></html>
