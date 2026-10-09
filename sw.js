@@ -1,4 +1,4 @@
-const CACHE_NAME = "myfittrainer-v1-4";
+const CACHE_NAME = "myfittrainer-v1-5";
 const ASSETS = ["./", "./index.html", "./manifest.json"];
 self.addEventListener("install", event => {
   event.waitUntil(
