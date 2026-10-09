@@ -1,5 +1,6 @@
-# MyFitTrainer V1.7
+# MyFitTrainer V1.8
 
-Targeted iPhone Home Screen rendering update. Avoids transforming the document body, replaces the workout content container after updates, forces a fresh WebKit layout, applies the same repaint handling to Day Summary, and surfaces save errors instead of failing silently. Bumps service-worker cache version. Existing local storage key remains `myfittrainer_v1`.
+This release fixes the saved-data migration issue that caused `db.sessions.filter` to fail in the iPhone Home Screen app. On startup and before saving, it normalizes missing `sets`, `measurements`, and `sessions` arrays while preserving existing valid records under the existing `myfittrainer_v1` storage key.
 
-Deploy `index.html`, `manifest.json`, `sw.js`, and `README.md` to the root of the existing GitHub Pages repository.
+## Deploy
+Replace `index.html`, `manifest.json`, `sw.js`, and `README.md` in the root of the existing GitHub Pages repository. Commit and wait for deployment. Open the V1.8 URL once in Safari, then fully close and reopen the Home Screen app. Do not clear website data.
