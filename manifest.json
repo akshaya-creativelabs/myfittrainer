@@ -1,7 +1,7 @@
 {
   "name": "MyFitTrainer",
   "short_name": "MyFitTrainer",
-  "start_url": "./?v=20",
+  "start_url": "./?v=21",
   "scope": "./",
   "display": "standalone",
   "background_color": "#f3f5f8",
