@@ -1,3 +1,3 @@
-MyFitTrainer V2.5
+MyFitTrainer V2.6
 
-Fixes: graph units and scale labels; exercise history collapsed by default and expandable on tap; calendar uses local session start/end timestamps before stored date so sessions logged on different dates appear correctly. Existing storage key is retained. Deploy all four files to the repository root.
+Replace index.html, manifest.json, sw.js and README.md in the root of the existing GitHub Pages repository. This release fixes the visible version label and calendar range/date matching. It retains the existing localStorage key myfittrainer_v1. Do not clear website data.
