@@ -1,6 +1,6 @@
-# MyFitTrainer V2.3
+# MyFitTrainer V2.4
 
-V2.3 updates the Home dashboard while retaining the existing `myfittrainer_v1` local-storage key.
+V2.4 updates the Home dashboard, adds a 12-week workout calendar and exercise-history trend graph, and tightens the workout layout while retaining the existing `myfittrainer_v1` local-storage key.
 
 ## Home improvements
 - Compact dashboard layout designed to bring today's plan, progress, and weekly plan into one mobile view where screen height permits.
