@@ -1,5 +1,5 @@
-const CACHE_NAME = "myfittrainer-v3-2";
-const ASSETS = ["./", "./index.html", "./manifest.json"];
+const CACHE_NAME = "myfittrainer-v3-3";
+const ASSETS = ["./", "./index.html", "./manifest.json", "./glute-bridge.gif"];
 self.addEventListener("install", event => {
   event.waitUntil(caches.open(CACHE_NAME).then(cache => cache.addAll(ASSETS)).then(() => self.skipWaiting()));
 });
