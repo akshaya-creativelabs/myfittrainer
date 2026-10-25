@@ -1,8 +1,5 @@
-# MyFitTrainer V3.4.3
+MyFitTrainer V3.4.4
 
-Changes in this release:
-- Body Measurement History is collapsed by default, with a Show entries / Hide entries toggle matching Exercise History.
-- Existing measurement records and the `myfittrainer_v1` storage key are preserved.
+This release adds the new MyFitTrainer fitness logo for the PWA icon, iPhone Home Screen icon, and browser favicon. It preserves the existing localStorage key `myfittrainer_v1`.
 
-## Deploy
-Replace the five files in the repository root with these files and commit the changes. After GitHub Pages publishes, open `https://akshaya-creativelabs.github.io/myfittrainer/?v=343`. Do not clear Safari website data.
+Deployment: replace the existing root files in the GitHub Pages repository with all files in this ZIP, then commit/publish. Do not clear Safari website data. After deployment, open the app once with `?v=344`. iOS may keep the old Home Screen icon cached; if so, remove only the Home Screen shortcut and add the website to the Home Screen again after confirming the updated site loads. This does not delete the app's saved data.
