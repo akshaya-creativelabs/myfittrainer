@@ -1,5 +1,9 @@
-MyFitTrainer V3.4.4
+MyFitTrainer V3.4.5
 
-This release adds the new MyFitTrainer fitness logo for the PWA icon, iPhone Home Screen icon, and browser favicon. It preserves the existing localStorage key `myfittrainer_v1`.
+This release keeps the V3.4.4 logo and graph interactions and adds a one-time setup of the historical tracking dates supplied by the user.
 
-Deployment: replace the existing root files in the GitHub Pages repository with all files in this ZIP, then commit/publish. Do not clear Safari website data. After deployment, open the app once with `?v=344`. iOS may keep the old Home Screen icon cached; if so, remove only the Home Screen shortcut and add the website to the Home Screen again after confirming the updated site loads. This does not delete the app's saved data.
+Measurements seeded: 8 Oct 2026 — 98 kg; 18 Oct 2026 — 94.3 kg and 110 cm waist; 25 Oct 2026 — 93.4 kg.
+
+Completed workout dates seeded: 9, 10, 12, 13, 14, 15, 16, 19 and 25 October 2026. These are marked as completed sessions, but no individual exercises, sets, repetitions or weights are invented.
+
+The setup runs once using a migration flag and preserves unrelated existing records. It uses the existing localStorage key `myfittrainer_v1`. Deploy all files in the ZIP to the repository root and commit. Do not clear Safari website data.
