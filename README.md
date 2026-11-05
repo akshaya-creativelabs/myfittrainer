@@ -1,4 +1,4 @@
-# MyFitTrainer V3.5.1
+# MyFitTrainer V3.5.2
 
 ## What's new
 - Logo refresh fix: icon assets use versioned filenames, and the manifest and service-worker cache are updated to request the fresh icon rather than a stale cached one.
@@ -11,7 +11,7 @@
 ## Deploy to GitHub Pages
 1. Keep a copy of the current deployed files and, if possible, export a backup from the existing home-screen app before deploying.
 2. Upload all files in this ZIP to the repository's Pages root, replacing the prior app files as a set.
-3. Wait for GitHub Pages to publish. Open the website once in Safari to load V3.5.1.
+3. Wait for GitHub Pages to publish. Open the website once in Safari to load V3.5.2.
 4. In the home-screen app, open Progress → Backup & Restore → Export Backup. Save the resulting JSON file to iCloud Drive.
 5. Verify the JSON backup exists in Files before relying on it.
 
