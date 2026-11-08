@@ -1,5 +1,5 @@
 const CACHE_NAME = "myfittrainer-v3-6-0";
-const ASSETS = ["./", "./index.html", "./manifest-v351.json", "./glute-bridge.gif", "./icon-192-v351.png", "./icon-512-v351.png", "./apple-touch-icon-v351.png", "./favicon-v351.png"];
+const ASSETS = ["./", "./index.html", "./manifest-v360.json", "./glute-bridge.gif", "./icon-192-v351.png", "./icon-512-v351.png", "./apple-touch-icon-v351.png", "./favicon-v351.png"];
 self.addEventListener("install", event => {
   event.waitUntil(caches.open(CACHE_NAME).then(cache => cache.addAll(ASSETS)).then(() => self.skipWaiting()));
 });
